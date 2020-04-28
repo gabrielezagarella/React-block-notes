@@ -16,13 +16,19 @@ export default function App() {
     ]);
   };
 
+  const deleteTextHandler = idText => {
+    setTexts(courrentText => {
+      return courrentText.filter((item) => item.id !== idText)
+    })
+  }
+
   return (
     <View style={styles.container}>
       <Input add={addTextHandler} />
       <FlatList
         keyExtractor={(item, index) => item.id}
         data={texts}
-        renderItem={itemData => <List list={itemData.item.value} />}
+        renderItem={itemData => <List id={itemData.item.id} onDelete={deleteTextHandler} list={itemData.item.value} />}
       />
     </View>
   );
