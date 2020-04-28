@@ -1,49 +1,28 @@
 import React, { useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  Button,
-  FlatList
-} from "react-native";
+import { StyleSheet, View, FlatList } from "react-native";
+import List from "./Components/List";
+import Input from "./Components/Input";
 
 export default function App() {
-  const [enteredText, setEnteredText] = useState("");
   const [texts, setTexts] = useState([]);
 
-  const inputHandler = text => {
-    setEnteredText(text);
-  };
-  const addTextHandler = () => {
-    if (enteredText.trim() === "") {
+  const addTextHandler = text => {
+    if (text.trim() === "") {
       return alert("write something!");
     }
     setTexts(courrentText => [
       ...courrentText,
-      { id: Math.random().toString(), value: enteredText }
+      { id: Math.random().toString(), value: text }
     ]);
   };
 
   return (
     <View style={styles.container}>
-      <View style={styles.viewTextInput}>
-        <TextInput
-          placeholder="Write"
-          style={styles.textInput}
-          onChangeText={inputHandler}
-          value={enteredText}
-        />
-        <Button title="Add" onPress={addTextHandler} />
-      </View>
+      <Input add={addTextHandler} />
       <FlatList
         keyExtractor={(item, index) => item.id}
         data={texts}
-        renderItem={itemData => (
-          <View style={styles.listItem}>
-            <Text>{itemData.item.value}</Text>
-          </View>
-        )}
+        renderItem={itemData => <List list={itemData.item.value} />}
       />
     </View>
   );
@@ -52,23 +31,5 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     padding: 50
-  },
-  viewTextInput: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center"
-  },
-  textInput: {
-    borderColor: "black",
-    borderWidth: 3,
-    width: "80%",
-    padding: 10
-  },
-  listItem: {
-    padding: 20,
-    backgroundColor: "#ccc",
-    borderColor: "black",
-    borderWidth: 1,
-    marginVertical: 10
   }
 });
