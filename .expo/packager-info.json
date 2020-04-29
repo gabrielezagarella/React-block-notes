@@ -1,9 +1,9 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 80711,
-  "expoServerNgrokUrl": "https://eq-hrb.anonymous.react-block-notes.exp.direct",
-  "packagerNgrokUrl": "https://packager.eq-hrb.anonymous.react-block-notes.exp.direct",
-  "ngrokPid": 80721
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }
